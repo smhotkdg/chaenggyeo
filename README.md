@@ -17,6 +17,7 @@
 | [docs/PARSING_SPEC.md](docs/PARSING_SPEC.md) | 문장 → 트리거 변환 규칙 |
 | [docs/DECISIONS.md](docs/DECISIONS.md) | 결정 기록 |
 | [docs/OPEN_QUESTIONS.md](docs/OPEN_QUESTIONS.md) | 미결정 사항 |
+| [docs/POC_SMALL_MODEL.md](docs/POC_SMALL_MODEL.md) | 앱 내장 소형 해석 모델 실험 결과 |
 | [AGENTS.md](AGENTS.md) | LLM 작업 가이드 (문서 업데이트 규칙) |
 
 ## 상태

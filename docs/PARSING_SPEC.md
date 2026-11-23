@@ -48,6 +48,16 @@ LLM 프롬프트의 기준 예시이자, 오프라인 규칙의 최소 목록이
 
 LLM도 장소를 못 정하면 확인 카드에서 **장소 블록 선택**을 띄운다.
 
+### 1.1 장소가 없거나 "지금 이곳"을 뜻하는 경우 — `제안`
+
+| 표현 | trigger.type | 장소 | 비고 |
+|---|---|---|---|
+| 나갈 때 ○○ / 나가면서 ○○ / 일어날 때 ○○ | `depart` | `null` (앱이 지금 위치로 결정) | `PLAN.md` 5.4 장소 결정 규칙 |
+| 카페 나갈 때 ○○ / 여기서 나갈 때 ○○ | `depart` | `current` | 장소 종류 이름이어도 "지금 이 가게" 뜻 |
+
+- 해석 모델은 "나갈 때"를 집으로 단정하지 않는다. 집인지 임시 장소인지는 **지금 위치**를 아는 앱이 정한다.
+- `trigger.place`에 `current` 값을 추가한다 (4장 스키마).
+
 ## 2. 물건 → 행동·들를 곳 매핑
 
 | 물건 예시 | item_category | action | 들를 곳 (en_route 기본값) |
@@ -81,7 +91,7 @@ LLM도 장소를 못 정하면 확인 카드에서 **장소 블록 선택**을 �
   "action": "pick_up | buy | drop_off | do",
   "trigger": {
     "type": "arrive | depart | near_category | en_route",
-    "place": "home | work | <place_block_id> | null",
+    "place": "home | work | current | <place_block_id> | null",
     "category": "convenience_store | mart | pharmacy | post_office | null",
     "en_route": {
       "origin": "current | home | work | <place_block_id>",
@@ -129,6 +139,21 @@ LLM도 장소를 못 정하면 확인 카드에서 **장소 블록 선택**을 �
   "confidence": 1.0
 }
 ```
+
+### "카페 나갈 때 우산" (지금 카페에 머무는 중)
+```json
+{
+  "raw_text": "카페 나갈 때 우산",
+  "task": "우산",
+  "item_category": "umbrella",
+  "action": "pick_up",
+  "trigger": { "type": "depart", "place": "current", "category": null, "en_route": null },
+  "followup": { "re_alert_on": "none" },
+  "source": "llm_on_device",
+  "confidence": 0.9
+}
+```
+앱 처리: 지금 좌표로 임시 장소 생성 → `PLAN.md` 5.4 알림 단계.
 
 ### "집에 가는 길에 물"
 ```json

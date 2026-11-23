@@ -1,0 +1,3 @@
+poc/**/train.jsonl
+poc/**/*.pt
+__pycache__/

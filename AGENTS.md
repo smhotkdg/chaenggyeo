@@ -11,6 +11,7 @@
 | 2 | `docs/PARSING_SPEC.md` | 음성/텍스트 한 줄 → 장소·트리거·할 일 변환 규칙과 출력 JSON 스키마 |
 | 3 | `docs/DECISIONS.md` | 날짜별 결정 기록. 무엇이 확정이고 무엇이 제안인지 판단하는 기준 |
 | 4 | `docs/OPEN_QUESTIONS.md` | 아직 정하지 않은 것. 여기 있는 항목은 임의로 확정하지 않는다 |
+| 참고 | `docs/POC_SMALL_MODEL.md`, `poc/` | 실험 기록. 실험 코드는 `poc/<주제>/`에 둔다 |
 
 ## 2. 프로젝트 한 줄 요약
 

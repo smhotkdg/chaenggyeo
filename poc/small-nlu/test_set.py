@@ -1,0 +1,147 @@
+"""템플릿 밖 테스트셋 (사람이 직접 작성).
+
+생성기(gen_data.py)의 템플릿·물건 목록을 그대로 쓰지 않은 문장 위주로 썼다.
+- novel_expr: 생성기에 없는 장소·시점 표현 ("귀가 후", "출근하자마자" 등)
+- novel_item: 생성기 물건 목록에 없는 물건 ("롱패딩", "청첩장" 등)
+
+형식: (문장, trigger, anchor, origin, action, item, place, stop, tags)
+"""
+T = [
+    # ---- 집 도착 (arrive / home)
+    ("집에 가면 체육복", "arrive", "home", "none", "pick_up", "체육복", None, None, ""),
+    ("교복 챙기자 집에서", "arrive", "home", "none", "pick_up", "교복", None, None, ""),
+    ("집에서 교복 챙깁시다", "arrive", "home", "none", "pick_up", "교복", None, None, ""),
+    ("집 가면 교복 기억", "arrive", "home", "none", "pick_up", "교복", None, None, ""),
+    ("집에서 학회 영수증", "arrive", "home", "none", "pick_up", "학회 영수증", None, None, ""),
+    ("귀가 후 롱패딩 꺼내기", "arrive", "home", "none", "pick_up", "롱패딩", None, None, "novel_expr novel_item"),
+    ("집 들어갈 때 실내화 주머니 챙겨", "arrive", "home", "none", "pick_up", "실내화 주머니", None, None, "novel_expr novel_item"),
+    ("집에 도착하면 청첩장 챙기기", "arrive", "home", "none", "pick_up", "청첩장", None, None, "novel_item"),
+    ("집 도착 후 크레파스 가방에 넣기", "arrive", "home", "none", "pick_up", "크레파스", None, None, "novel_expr novel_item"),
+    ("집 오면 영양제 챙겨줘", "arrive", "home", "none", "pick_up", "영양제", None, None, "novel_item"),
+    ("이따 집에 들어오면 리코더", "arrive", "home", "none", "pick_up", "리코더", None, None, "novel_expr novel_item"),
+    ("집에 가서 졸업 앨범 꼭 찾기", "arrive", "home", "none", "pick_up", "졸업 앨범", None, None, "novel_item"),
+    ("퇴근하고 집에서 스케치북 챙기기", "arrive", "home", "none", "pick_up", "스케치북", None, None, "novel_expr novel_item"),
+    ("집에 가자마자 손수건 챙겨야 돼", "arrive", "home", "none", "pick_up", "손수건", None, None, "novel_expr novel_item"),
+    ("집 가서 상장 챙기는 거 잊지 마", "arrive", "home", "none", "pick_up", "상장", None, None, "novel_item"),
+    ("우비 집에서 챙겨", "arrive", "home", "none", "pick_up", "우비", None, None, "novel_item"),
+    ("집 와서 명함 지갑에 넣기", "arrive", "home", "none", "pick_up", "명함", None, None, "novel_item"),
+    ("오늘 집 가면 셔틀콕 챙기자", "arrive", "home", "none", "pick_up", "셔틀콕", None, None, "novel_item"),
+    ("집에 들어가면 안약 챙겨놔", "arrive", "home", "none", "pick_up", "안약", None, None, "novel_expr novel_item"),
+    ("집에서 체육복 챙겨라", "arrive", "home", "none", "pick_up", "체육복", None, None, "novel_expr"),
+    ("집도착하면 머리끈", "arrive", "home", "none", "pick_up", "머리끈", None, None, "novel_item"),
+    ("귀가하면 유산균 챙길 것", "arrive", "home", "none", "pick_up", "유산균", None, None, "novel_item"),
+    ("집에서 등본 출력해서 챙기기", "arrive", "home", "none", "pick_up", "등본", None, None, "novel_item"),
+    ("집 가면 화분 물 주기", "arrive", "home", "none", "pick_up", "화분", None, None, "novel_item"),
+    ("집에 가면 사진 챙겨 줘요", "arrive", "home", "none", "pick_up", "사진", None, None, "novel_item"),
+    # ---- 집 출발 (depart / home)
+    ("집 나갈 때 우산", "depart", "home", "none", "pick_up", "우산", None, None, ""),
+    ("나가기 전에 립밤 챙기기", "depart", "home", "none", "pick_up", "립밤", None, None, "novel_item"),
+    ("현관 나서기 전에 쓰레기 버리기", "depart", "home", "none", "drop_off", "쓰레기", None, None, "novel_expr novel_item"),
+    ("출근할 때 노트북 거치대 챙겨", "depart", "home", "none", "pick_up", "노트북 거치대", None, None, "novel_item"),
+    ("내일 아침 나갈 때 캠핑 의자", "depart", "home", "none", "pick_up", "캠핑 의자", None, None, "novel_item"),
+    ("외출할 때 손 소독제", "depart", "home", "none", "pick_up", "손 소독제", None, None, "novel_item"),
+    ("집에서 나설 때 블루투스 키보드 가져가기", "depart", "home", "none", "pick_up", "블루투스 키보드", None, None, "novel_expr novel_item"),
+    ("출근 전에 견적서 챙기기", "depart", "home", "none", "pick_up", "견적서", None, None, "novel_expr novel_item"),
+    ("등교할 때 리코더 가져가", "depart", "home", "none", "pick_up", "리코더", None, None, "novel_item"),
+    ("나갈때 텀블러", "depart", "home", "none", "pick_up", "텀블러", None, None, ""),
+    ("집 나가면서 택배 송장 붙이기", "depart", "home", "none", "pick_up", "택배 송장", None, None, "novel_item"),
+    ("출근하기 전에 세금계산서 챙겨야 함", "depart", "home", "none", "pick_up", "세금계산서", None, None, "novel_item"),
+    ("집 나서면서 음식물 쓰레기 버리기", "depart", "home", "none", "drop_off", "음식물 쓰레기", None, None, "novel_item"),
+    ("나갈 때 카드 지갑 꼭", "depart", "home", "none", "pick_up", "카드 지갑", None, None, "novel_item"),
+    ("아침에 집 나갈 때 마우스 챙겨줘", "depart", "home", "none", "pick_up", "마우스", None, None, "novel_item"),
+    # ---- 회사 도착 (arrive / work)
+    ("회사에서 계약서 출력", "arrive", "work", "none", "pick_up", "계약서", None, None, ""),
+    ("출근하자마자 견적서 보내기", "arrive", "work", "none", "drop_off", "견적서", None, None, "novel_expr novel_item"),
+    ("회사 가면 명함 챙기기", "arrive", "work", "none", "pick_up", "명함", None, None, "novel_item"),
+    ("사무실 들어가면 노트북 충전기", "arrive", "work", "none", "pick_up", "노트북 충전기", None, None, "novel_expr"),
+    ("회사 도착하면 택배 송장 출력", "arrive", "work", "none", "pick_up", "택배 송장", None, None, "novel_item"),
+    ("출근하면 영양제 먹기", "arrive", "work", "none", "pick_up", "영양제", None, None, "novel_item"),
+    ("회사 들어가서 우편물 찾기", "arrive", "work", "none", "drop_off", "우편물", None, None, "novel_expr"),
+    ("내일 회사 가서 등본 제출", "arrive", "work", "none", "drop_off", "등본", None, None, "novel_item"),
+    ("사무실에서 사원증 챙겨", "arrive", "work", "none", "pick_up", "사원증", None, None, ""),
+    ("출근해서 블루투스 키보드 꺼내기", "arrive", "work", "none", "pick_up", "블루투스 키보드", None, None, "novel_item"),
+    ("회사가면 마우스 바꾸기", "arrive", "work", "none", "pick_up", "마우스", None, None, "novel_item"),
+    ("회사 도착해서 청첩장 돌리기", "arrive", "work", "none", "drop_off", "청첩장", None, None, "novel_item"),
+    ("출근하면 리포트 제출하기", "arrive", "work", "none", "drop_off", "리포트", None, None, ""),
+    ("회사에 도착하자마자 셔츠 갈아입기", "arrive", "work", "none", "pick_up", "셔츠", None, None, "novel_expr novel_item"),
+    ("사무실 가면 화분 물 주기", "arrive", "work", "none", "pick_up", "화분", None, None, "novel_item"),
+    # ---- 회사 출발 (depart / work)
+    ("퇴근할 때 우산", "depart", "work", "none", "pick_up", "우산", None, None, ""),
+    ("퇴근 전에 텀블러 씻어서 챙기기", "depart", "work", "none", "pick_up", "텀블러", None, None, ""),
+    ("회사 나서기 전에 롱패딩", "depart", "work", "none", "pick_up", "롱패딩", None, None, "novel_expr novel_item"),
+    ("퇴근하면서 졸업 앨범 가져오기", "depart", "work", "none", "pick_up", "졸업 앨범", None, None, "novel_item"),
+    ("퇴근할때 도시락통 챙겨", "depart", "work", "none", "pick_up", "도시락통", None, None, ""),
+    ("회사 나올 때 택배 가져가기", "depart", "work", "none", "pick_up", "택배", None, None, ""),
+    ("퇴근 무렵에 카메라 챙기기", "depart", "work", "none", "pick_up", "카메라", None, None, "novel_expr"),
+    ("퇴근하기 전에 상장 챙겨 오기", "depart", "work", "none", "pick_up", "상장", None, None, "novel_item"),
+    ("사무실 나갈 때 안경", "depart", "work", "none", "pick_up", "안경", None, None, ""),
+    ("퇴근할 때 캠핑 의자 들고 가기", "depart", "work", "none", "pick_up", "캠핑 의자", None, None, "novel_item"),
+    ("퇴근 직전 노트북 거치대", "depart", "work", "none", "pick_up", "노트북 거치대", None, None, "novel_item"),
+    ("회사에서 나올 때 우비 챙겨요", "depart", "work", "none", "pick_up", "우비", None, None, "novel_item"),
+    ("오늘 퇴근할 때 머리끈", "depart", "work", "none", "pick_up", "머리끈", None, None, "novel_item"),
+    # ---- 다른 장소 도착 (arrive / other) : 사용자 장소 + 장소 종류
+    ("헬스장에서 수건", "arrive", "other", "none", "pick_up", "수건", "헬스장", None, ""),
+    ("마트 가면 계란", "arrive", "other", "none", "buy", "계란", "마트", None, ""),
+    ("다음에 약국 가면 안약 사기", "arrive", "other", "none", "buy", "안약", "약국", None, "novel_item"),
+    ("편의점 들르면 귤 사 와", "arrive", "other", "none", "buy", "귤", "편의점", None, "novel_item"),
+    ("다이소 가면 고무장갑", "arrive", "other", "none", "buy", "고무장갑", "다이소", None, "novel_item"),
+    ("우체국 가면 등기 보내기", "arrive", "other", "none", "drop_off", "등기", "우체국", None, "novel_item"),
+    ("학교 도착하면 리코더 꺼내기", "arrive", "other", "none", "pick_up", "리코더", "학교", None, "novel_item"),
+    ("도서관에서 책 반납", "arrive", "other", "none", "drop_off", "책", "도서관", None, ""),
+    ("부모님 댁 가면 반찬통 챙기기", "arrive", "other", "none", "pick_up", "반찬통", "부모님 댁", None, "novel_item"),
+    ("약국 보이면 반창고", "arrive", "other", "none", "buy", "반창고", "약국", None, "novel_item"),
+    ("세탁소 들러서 셔츠 맡기기", "arrive", "other", "none", "drop_off", "셔츠", "세탁소", None, "novel_item"),
+    ("빵집 가면 식빵 사기", "arrive", "other", "none", "buy", "식빵", "빵집", None, "novel_item"),
+    ("연구실 가면 외장하드", "arrive", "other", "none", "pick_up", "외장하드", "연구실", None, "novel_item"),
+    ("수영장 가서 수경 챙기기", "arrive", "other", "none", "pick_up", "수경", "수영장", None, "novel_item"),
+    ("마트에서 떡볶이 떡 사자", "arrive", "other", "none", "buy", "떡볶이 떡", "마트", None, "novel_item"),
+    ("편의점 가면 비타민 음료", "arrive", "other", "none", "buy", "비타민 음료", "편의점", None, "novel_item"),
+    ("학원 도착하면 숙제 내기", "arrive", "other", "none", "drop_off", "숙제", "학원", None, "novel_item"),
+    ("문구점 들르면 포스트잇", "arrive", "other", "none", "buy", "포스트잇", "문구점", None, "novel_item"),
+    ("본가 가면 겨울 이불 가져오기", "arrive", "other", "none", "pick_up", "겨울 이불", "본가", None, "novel_item"),
+    ("카페 가면 텀블러 꺼내기", "arrive", "other", "none", "pick_up", "텀블러", "카페", None, ""),
+    # ---- 다른 장소 출발 (depart / other)
+    ("헬스장에서 나올 때 물통", "depart", "other", "none", "pick_up", "물통", "헬스장", None, ""),
+    ("학원 끝나고 나올 때 필통", "depart", "other", "none", "pick_up", "필통", "학원", None, ""),
+    ("도서관 나갈 때 노트북", "depart", "other", "none", "pick_up", "노트북", "도서관", None, ""),
+    ("수영장 나올 때 수경 챙겨", "depart", "other", "none", "pick_up", "수경", "수영장", None, "novel_item"),
+    ("병원 나갈 때 처방전", "depart", "other", "none", "pick_up", "처방전", "병원", None, "novel_item"),
+    # ---- 가는 길에 (en_route)
+    ("집에 가는 길에 물", "en_route", "home", "current", "buy", "물", None, None, ""),
+    ("퇴근길에 우산", "en_route", "home", "work", "buy", "우산", None, None, ""),
+    ("퇴근길에 마트에서 물", "en_route", "home", "work", "buy", "물", None, "마트", ""),
+    ("집 가는 길에 편의점 들러서 귤 사기", "en_route", "home", "current", "buy", "귤", None, "편의점", "novel_item"),
+    ("퇴근하는 길에 약국에서 반창고", "en_route", "home", "work", "buy", "반창고", None, "약국", "novel_item"),
+    ("귀갓길에 식빵 사 오기", "en_route", "home", "current", "buy", "식빵", None, None, "novel_item"),
+    ("집 오는 길에 고무장갑 사야 함", "en_route", "home", "current", "buy", "고무장갑", None, None, "novel_item"),
+    ("출근길에 커피", "en_route", "work", "home", "buy", "커피", None, None, ""),
+    ("출근길에 우체국 들러서 등기 보내기", "en_route", "work", "home", "drop_off", "등기", None, "우체국", "novel_item"),
+    ("회사 가는 길에 편의점에서 비타민 음료", "en_route", "work", "current", "buy", "비타민 음료", None, "편의점", "novel_item"),
+    ("퇴근길 다이소 들러서 포스트잇", "en_route", "home", "work", "buy", "포스트잇", None, "다이소", "novel_item"),
+    ("집 가면서 세탁소에서 셔츠 찾기", "en_route", "home", "current", "drop_off", "셔츠", None, "세탁소", "novel_item"),
+    ("헬스장 가는 길에 단백질 음료 사기", "en_route", "other", "current", "buy", "단백질 음료", "헬스장", None, "novel_item"),
+    ("학교 가는 길에 문구점에서 크레파스", "en_route", "other", "current", "buy", "크레파스", "학교", "문구점", "novel_item"),
+    ("들어가는 길에 떡볶이 떡 사 와", "en_route", "home", "current", "buy", "떡볶이 떡", None, None, "novel_item"),
+    ("집에 들어가는 길에 마트 들러 귤", "en_route", "home", "current", "buy", "귤", None, "마트", "novel_item"),
+    ("퇴근길에 꽃집에서 꽃다발", "en_route", "home", "work", "buy", "꽃다발", None, "꽃집", "novel_item"),
+    ("집 가는 길에 택배 반품 보내기", "en_route", "home", "current", "drop_off", "택배 반품", None, None, ""),
+    ("출근하는 길에 빵집에서 식빵", "en_route", "work", "home", "buy", "식빵", None, "빵집", "novel_item"),
+    ("귀가하는 길에 약국 들러서 안약", "en_route", "home", "current", "buy", "안약", None, "약국", "novel_expr novel_item"),
+    ("퇴근하고 집 가는 길에 계란", "en_route", "home", "work", "buy", "계란", None, None, ""),
+    ("집으로 가는 길에 편의점에서 우유", "en_route", "home", "current", "buy", "우유", None, "편의점", "novel_expr"),
+    ("부모님 댁 가는 길에 꽃 사 가기", "en_route", "other", "current", "buy", "꽃", "부모님 댁", None, ""),
+    ("퇴근길에 반찬 사기", "en_route", "home", "work", "buy", "반찬", None, None, "novel_item"),
+    ("집 가는 길 마트에서 대파", "en_route", "home", "current", "buy", "대파", None, "마트", "novel_expr"),
+]
+KEYS = ["text", "trigger", "anchor", "origin", "action", "item", "place", "stop", "tags"]
+TEST = [dict(zip(KEYS, t)) for t in T]
+
+if __name__ == "__main__":
+    import collections
+    print(len(TEST), collections.Counter(t["trigger"] for t in TEST))
+    print("novel_expr", sum("novel_expr" in t["tags"] for t in TEST),
+          "novel_item", sum("novel_item" in t["tags"] for t in TEST))
+    for t in TEST:
+        for k in ("item", "place", "stop"):
+            if t[k]:
+                assert t[k] in t["text"], (t["text"], t[k])
