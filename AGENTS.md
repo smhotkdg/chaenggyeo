@@ -1,4 +1,4 @@
-# AGENTS.md — LLM 작업 가이드 (챙겨 / chaenggyeo)
+# AGENTS.md — LLM 작업 가이드 (챙겨요 / 저장소 chaenggyeo)
 
 이 파일은 이 저장소에서 작업하는 모든 LLM(Claude, GPT, Gemini, Cursor 등)을 위한 규칙이다.
 작업을 시작하기 전에 반드시 이 파일과 아래 문서를 순서대로 읽는다.
